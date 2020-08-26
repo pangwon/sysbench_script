@@ -14,7 +14,11 @@ NUM_CORE="8 2"
 
 #RES_DIR="/home/oslab/kw/sysbench_results/xfs_hw5"
 RES_DIR="/home/dohyun/kw/results"
+
+MNT_DIR="/mnt/sysbench"
 # Main Loop
+
+sudo cd ${MNT_DIR}
 
 for core in $NUM_CORE; do
 	case $core in
