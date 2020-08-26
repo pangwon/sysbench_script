@@ -26,8 +26,8 @@ for core in $NUM_CORE; do
 	esac
 	for freq in $FSYNC_FREQ; do
         	for mul in $NUM_THREADS_MUL; do
-			n_threads='expr $core |* $mul'
-                	sysbench fileio --threads=$n_threads --time=${TIME} --file-num=${FILE_NUM} --file-block-size=${IO_SIZE} --file-total-size=${FILE_SIZE} --file-test-mode=seqwr --file-fsync-freq=$freq run > ${RES_DIR}/${NUM_CORE}core_${freq}freq_${n_threads}thr.out
+			n_threads=$(expr $core |* $mul)
+                	sysbench fileio --threads=$n_threads --time=${TIME} --file-num=${FILE_NUM} --file-block-size=${IO_SIZE} --file-total-size=${FILE_SIZE} --file-test-mode=seqwr --file-fsync-freq=$freq run > ${RES_DIR}/${core}core_${freq}freq_${n_threads}thr.out
                 	#printf "Single-ext4, fsync-freq %d, num-threads %d completed\n" $freq $n_threads
                 	sysbench fileio cleanup
                 	echo 3 > /proc/sys/vm/drop_caches
